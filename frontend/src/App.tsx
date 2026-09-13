@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
+import DashboardLayout from './layouts/DashboardLayout'
+import DashboardPlaceholderPage from './pages/DashboardPlaceholderPage'
 import LoginPage from './features/auth/pages/LoginPage'
 import RegisterPage from './features/auth/pages/RegisterPage'
 import PlaceholderPage from './pages/PlaceholderPage'
@@ -14,10 +16,13 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
       </Route>
 
-      <Route
-        path="/dashboard"
-        element={<PlaceholderPage title="Dashboard" />}
-      />
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<DashboardPlaceholderPage title="Overview" />} />
+        <Route path="projects" element={<DashboardPlaceholderPage title="Projects" />} />
+        <Route path="tasks" element={<DashboardPlaceholderPage title="Tasks" />} />
+        <Route path="teams" element={<DashboardPlaceholderPage title="Teams" />} />
+        <Route path="*" element={<DashboardPlaceholderPage title="Page not found" notFound />} />
+      </Route>
 
       <Route
         path="*"
