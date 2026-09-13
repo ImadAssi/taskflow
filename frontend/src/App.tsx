@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router-dom'
 import PlaceholderPage from './pages/PlaceholderPage'
 
 function App() {
