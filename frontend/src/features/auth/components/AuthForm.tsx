@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { SubmitEvent } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Button from '../../../components/ui/Button'
 import Input from '../../../components/ui/Input'
 import { validateAuth } from '../validation'
