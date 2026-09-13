@@ -1,75 +1,53 @@
-# React + TypeScript + Vite
+# TaskFlow frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite, with Tailwind CSS and React Router.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Run these commands from `frontend/` using a Node.js version supported by Vite:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+On Windows, use `npm.cmd` if PowerShell blocks `npm.ps1`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Checks
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm run lint
+npm run build
+npm run preview
 ```
+
+The build runs TypeScript checking before generating `dist/`.
+
+## Structure
+
+- `src/components/ui`: reusable UI components.
+- `src/components/layout`: shared layout components.
+- `src/features/auth`, `projects`, `tasks`, `teams`: feature-specific code.
+- `src/pages`: route entry components; currently one temporary placeholder.
+- `src/layouts`: page layouts.
+- `src/services`: API clients and external service integrations.
+- `src/store`: shared state when needed.
+- `src/hooks`, `src/types`, `src/utils`: shared hooks, types, and utilities.
+
+Empty directories are tracked with `.gitkeep`; remove these files when adding code.
+Keep feature-specific components, hooks, and types inside their feature directory.
+
+## Routing and styling
+
+`src/main.tsx` provides BrowserRouter and imports the global stylesheet.
+`src/App.tsx` defines temporary routes for `/`, `/login`, `/register`, and
+`/dashboard`, plus a not-found fallback. These routes have no authentication
+or application behavior yet.
+
+Tailwind is configured through the Vite plugin and `src/index.css`.
+
+## Deployment
+
+Build and serve `dist/` with a production static host. Configure an SPA fallback
+to `index.html` for frontend routes so direct visits and refreshes work.
+`npm run preview` is for local build verification.
