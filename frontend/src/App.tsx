@@ -6,6 +6,7 @@ import LoginPage from './features/auth/pages/LoginPage'
 import RegisterPage from './features/auth/pages/RegisterPage'
 import PlaceholderPage from './pages/PlaceholderPage'
 import ProjectsPage from './features/projects/pages/ProjectsPage'
+import TasksPage from './features/tasks/pages/TasksPage'
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
       <Route path="/dashboard" element={<DashboardLayout />}>
         <Route index element={<DashboardPlaceholderPage title="Overview" />} />
         <Route path="projects" element={<ProjectsPage />} />
-        <Route path="tasks" element={<DashboardPlaceholderPage title="Tasks" />} />
+        <Route path="tasks" element={<TasksPage />} />
         <Route path="teams" element={<DashboardPlaceholderPage title="Teams" />} />
         <Route path="*" element={<DashboardPlaceholderPage title="Page not found" notFound />} />
       </Route>
