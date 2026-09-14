@@ -1,0 +1,7 @@
+import { Link } from 'react-router-dom'
+import type { TeamRole, TeamUser } from '../../teams/types'
+
+export default function TeamSummary({ count, roles, people, projectTitle }: { count: number; roles: Record<TeamRole, number>; people: { userId: string; user?: TeamUser }[]; projectTitle: string }) {
+  return <section className="rounded-2xl border border-slate-200 bg-white p-6"><div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-lg font-semibold">Team summary</h2><Link to="/dashboard/teams" className="rounded text-sm font-semibold text-indigo-700 underline-offset-4 hover:underline focus-visible:outline-2">View team</Link></div><p className="mt-2 text-sm wrap-anywhere text-slate-600">Mock project scope: {projectTitle}. {count} unique {count === 1 ? 'person' : 'people'}.</p><h3 className="mb-3 mt-5 text-sm font-semibold">Project memberships by role</h3><dl className="flex flex-wrap gap-5 text-sm">{(['OWNER', 'MANAGER', 'MEMBER'] as const).map(role => <div key={role}><dt className="text-xs text-slate-500">{role}</dt><dd className="mt-1 font-semibold">{roles[role]}</dd></div>)}</dl>{people.length === 0 ? <p className="mt-5 text-sm text-slate-600">No team members yet.</p> : <ul className="mt-5 flex flex-wrap gap-2">{people.map(person => <li key={person.userId} className="rounded-lg bg-slate-100 px-3 py-2 text-sm wrap-anywhere text-slate-700">{person.user?.name ?? 'Unknown member'}</li>)}</ul>}</section>
+}
+
