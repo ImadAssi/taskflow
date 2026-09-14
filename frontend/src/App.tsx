@@ -8,6 +8,7 @@ import PlaceholderPage from './pages/PlaceholderPage'
 import ProjectsPage from './features/projects/pages/ProjectsPage'
 import TasksPage from './features/tasks/pages/TasksPage'
 import TeamsPage from './features/teams/pages/TeamsPage'
+import OverviewPage from './features/overview/pages/OverviewPage'
 
 export default function App() {
   return (
@@ -20,7 +21,7 @@ export default function App() {
       </Route>
 
       <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<DashboardPlaceholderPage title="Overview" />} />
+        <Route index element={<OverviewPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="tasks" element={<TasksPage />} />
         <Route path="teams" element={<TeamsPage />} />
